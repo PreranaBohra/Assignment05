@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import {BrowserRouter, Route, Switch} from "react-router-dom"
+import LogIn from "./components/Login"
+import RegisterForm from "./components/registerForm"
+import Navbar from "./components/navBar"
+import ArtPiece from "./components/ArtPiece"
+import ArtInfo from "./components/ArtInfo"
+import cart from "./components/Cart"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(){
+    return(
+        <BrowserRouter>
+            <div>
+                <Navbar/>
+                <Switch>
+                <Route path ="/" exact component = {ArtPiece}/>
+                <Route path ="/loginForm" component = {LogIn}/>
+                <Route path ="/registerForm" component = {RegisterForm}/>
+                <Route path ="/artInfo/:id" component = {ArtInfo}/>
+                <Route path ="/cart" component ={cart}/>
+                </Switch>
+            </div>
+        </BrowserRouter>
+    )
 }
 
-export default App;
+
+
+
+export default App
