@@ -1,0 +1,60 @@
+img{
+    height: 200px;
+    width: 220px;
+    padding: 10px;
+  }
+  
+  .container{
+    display: flex;
+    flex-wrap:wrap;
+  }
+  .imgcontainer{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page_container{
+    display: flex;
+    flex-wrap:wrap;
+  }
+  
+  .caption{
+    font-size: 12px; 
+    text-align: center;
+  }
+    /* margin-top: 5px;
+    font-weight: bold; */
+    /* text-align-last: center;
+  
+  
+/* ArtInfo */
+.info_container{
+    width:40%;
+    margin-left: 500px;
+  }
+  
+  .info_caption{
+     font-size: large;
+     font-weight:bold; 
+     
+  }
+  
+  .CartBtn{
+    padding: 5px;
+    width: 240px;
+    height: 50px;
+    background-color: rgb(109, 109, 240);
+    color: white;
+    border-radius: 5px;
+    font-weight:100px;
+    outline: none;
+  }
+  
+  .cartItem{
+     float: left;
+  }
+
+  .gridItem{
+    border: 1px solid rgb(168, 168, 214);
+    width: 240px;
+ }

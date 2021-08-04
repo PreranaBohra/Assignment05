@@ -2,27 +2,19 @@ import React, { useState } from "react"
 import { Form, Input, FormGroup, FormFeedback, Button, Label } from "reactstrap"
 import Axios from "axios"
 import { useFormik } from "formik"
+import "../css/Login.css"
 
 function LoginForm(){
-    const url ="https://artwork-gallery-app.herokuapp.com/auth/login"
-    const[data,setData] = useState(
-        {
-        email:"",
-        password:""
-        }
-    )
-    function handleSubmit(e){
-        e.preventDefault();
-        Axios.post(url,{
-            email: data.email,
-            password: data.password
-        })
-        .then(res=>setData(res.data))
+    const url ="https://artwork-gallery-app1.herokuapp.com/auth/login"
+    const[data,setData] = useState( )
+    function handleSubmit(data){
+        Axios.post(url,data)
+        .then(res=>setData(res))
      }
 
-    function handleChange(e){
+    function handleChange(data){
         const newData={...data}
-        newData[e.target.id] = e.target.value
+        newData[data.target.id] = data.target.value
         setData(newData)
         console.log(newData)
     }
@@ -55,7 +47,7 @@ function LoginForm(){
         handleChange,
         handleSubmit,
         onSubmit: values => {
-          JSON.stringify(values, null, 2)
+          handleSubmit(values)
         }
     
       })

@@ -1,0 +1,60 @@
+body{
+  margin: 40px;
+}
+
+
+button:hover{
+  cursor: pointer;
+}
+
+
+/* Media Query */
+
+@media screen and (max-width: 900px){
+  body{
+    margin: 10px;
+  }
+  
+  .bars{
+    display:block;
+  }
+
+  .Navbar{
+    background-color:rgb(80, 80, 92);
+    color: white;
+    height: 8vh;
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    width: auto;
+
+  }
+  .nav-link a{
+    display: none;
+  }
+  .Navbar .heading{
+      font-weight: 700;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      font-size: large;
+      text-transform: uppercase;
+  }
+  
+  .nav-link-hidden{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    padding: 20px;
+    top:45px;
+    left:0;
+    background-color:rgb(224, 204, 243);
+    width:auto;
+    text-align: center;
+  }
+  
+  .nav-link a:hover{
+    background-color:rgb(212, 212, 224);
+    color:rgb(83, 83, 207);
+    border-radius: 5px;
+  } 
+}

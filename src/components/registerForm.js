@@ -2,35 +2,23 @@ import React, { useState } from "react"
 import { Form, Input, Label, FormGroup, FormFeedback, Button } from "reactstrap"
 import Axios from "axios"
 import { useFormik } from "formik"
+import "../css/RegisterForm.css"
 
 
 function Register(){
-    const url ="https://artwork-gallery-app.herokuapp.com/auth/register"
-    const[data,setData] = useState(
-        {
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: '',
-            confirmPassword: ''
-        }
-    )
+    const url ="https://artwork-gallery-app1.herokuapp.com/auth/register"
+    const[data,setData] = useState()
         
-    function handleSubmit(e){
-        e.preventDefault();
-        Axios.post(url,{
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email,
-            password: data.password,
-            confirmPassword: data.password
-        })
-        .then(res=>setData(res.data))
-     }
+    function handleSubmit(data){
+        Axios.post(url,data).then((res) => {
+            //redirect to homepage or login
+            console.log(res);   
+     });
+    }
 
-    function handleChange(e){
+    function handleChange(data){
         const newData={...data}
-        newData[e.target.id] = e.target.value
+        newData[data.target.id] = data.target.value
         setData(newData)
         console.log(newData)
     }
@@ -75,8 +63,8 @@ function Register(){
         handleChange,
         handleSubmit,
         onSubmit: values => {
-          JSON.stringify(values, null)
-        }
+          handleSubmit(values)
+        },
     
       })
 
@@ -88,8 +76,12 @@ function Register(){
                     <Input id="firstName"
                      value={formik.values.firstName} 
                      name="firstName" 
-                     onChange={formik.handleChange} />
-                     {formik.touched.firstName && formik.errors.firstName ? <div className='error' className="error">{formik.errors.firstName}</div> : null}
+                     onChange={formik.handleChange}
+                     autoComplete ="off" />
+                     {formik.touched.firstName && formik.errors.firstName ? 
+                        <div className='error' className="error">
+                            {formik.errors.firstName}
+                        </div> : null }
                 </FormGroup>
 
                 <FormGroup className = "form_content">
@@ -97,8 +89,12 @@ function Register(){
                     <Input id="lastName"
                     value={formik.values.lastName}  
                     name="lastName" 
-                    onChange={formik.handleChange} />
-                    {formik.touched.lastName && formik.errors.lastName ? <div className='error' className="error">{formik.errors.lastName}</div> : null}
+                    onChange={formik.handleChange} 
+                    autoComplete ="off"/>
+                    {formik.touched.lastName && formik.errors.lastName ?
+                        <div className='error' className="error">
+                            {formik.errors.lastName}
+                        </div> : null}
                 </FormGroup>
 
                 <FormGroup className = "form_content">
@@ -107,7 +103,10 @@ function Register(){
                     value={formik.values.email}  
                     name="email" 
                     onChange={formik.handleChange} />
-                    {formik.touched.email && formik.errors.email ? <div className='error' className="error">{formik.errors.email}</div> : null}
+                    {formik.touched.email && formik.errors.email ? 
+                        <div className='error' className="error">
+                            {formik.errors.email}
+                        </div> : null}
                 </FormGroup>
 
                 <FormGroup className = "form_content">
@@ -115,8 +114,12 @@ function Register(){
                     <Input id="password" 
                     value={formik.values.password} 
                     type="password" name="password"  
-                    onChange={formik.handleChange} />
-                    {formik.touched.password && formik.errors.password ? <div className='error' className="error">{formik.errors.password}</div> : null}
+                    onChange={formik.handleChange} 
+                    autoComplete ="off"/>
+                    {formik.touched.password && formik.errors.password ?
+                        <div className='error' className="error">
+                        {formik.errors.password}
+                        </div> : null}
                 </FormGroup>
 
                 <FormGroup className = "form_content">
@@ -125,8 +128,12 @@ function Register(){
                     value={formik.values.confirmPassword} 
                     type="password" 
                     name="confirmPassword" 
-                    onChange={formik.handleChange} />
-                    {formik.touched.confirmPassword && formik.errors.confirmPassword ? <div className='error' className="error">{formik.errors.confirmPassword}</div> : null}
+                    onChange={formik.handleChange} 
+                    autoComplete ="off"/>
+                    {formik.touched.confirmPassword && formik.errors.confirmPassword ? 
+                        <div className='error' className="error">
+                            {formik.errors.confirmPassword}
+                        </div> : null}
                 </FormGroup>
 
                 <Button className="register_btn">Register</Button>

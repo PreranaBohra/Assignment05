@@ -1,0 +1,139 @@
+/* Register Form */
+.register_container{
+    width: 30%;
+    height: auto;
+    background: #ffffff;
+    margin: 0 auto;
+    border: 2px solid rgb(168, 168, 206);
+    border-radius: 0px 10px;
+    margin-top: 50px;
+    
+  }
+  
+  .title{
+    text-align: center;
+    background-color: rgb(89, 89, 241);
+    color:White;
+    font-size:large;
+    font-weight: 400;
+    font-family: fantasy;
+    text-transform: uppercase;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    width:300px;
+    border-radius: 5px 20px;
+  }
+  
+  ::placeholder{
+    opacity: 0.5;
+    color:gray;
+    text-transform: capitalize;
+  }
+  
+  .form_content{ padding-right: 20px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+  }
+  
+  .form_content input{
+    width:300px;
+    height:20px;
+  }
+  
+  .forget_link a{
+    text-decoration: none;
+    color: rgb(29, 29, 236);
+    padding-left: 20px;
+    outline: none;
+  }
+  
+  .register_btn{
+    padding: 10px;
+    width: 250px;
+    margin-left: 55px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    background-color: rgb(85, 85, 241);
+    color:white;
+    border-radius: 5px;
+    font-weight:100px;
+    text-transform: uppercase;
+    outline: none;
+  }
+  
+  Label{
+    font-family: fantasy;
+  }
+  .FormFeedback{
+    color:rgb(199, 57, 57);
+    font-size: small;
+  }
+
+  .error{
+    color:rgb(199, 57, 57);
+    font-size: small;
+  }
+  
+/*Media Query*/
+
+  /* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+  .register_container{
+    width: auto;
+    height: auto;
+  }
+
+  .form_content{
+    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+  .register_container{
+    width:fit-content;
+    height:fit-content;
+  }
+
+  .form_content{
+    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+  .register_container{
+    width:fit-content;
+    height:fit-content;
+  }
+
+  .form_content{
+    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {  
+  .register_container{
+    width:fit-content;
+    height:fit-content;
+  }
+
+  .form_content{
+    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+}

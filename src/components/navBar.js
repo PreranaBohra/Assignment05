@@ -2,22 +2,24 @@ import React,{useState} from "react"
 import {Link} from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from "@fortawesome/free-solid-svg-icons"
-
+import "../css/NavBar.css"
 
 
 function Navbar(){
     const [isOpen, setOpen] = useState(false);
     return(
-        <div className = "Navbar">
+        <header>
         <div className = "heading">Graphic Artwork</div>
-            <div className = {isOpen ? "nav-link-hidden a" : "nav-link a"}>
-               <Link to = "/">Home</Link>
-               <Link to = "/loginForm">Login</Link>
-               <Link to = "/registerForm">Sign Up</Link>
-               <Link to = "/Cart">Cart</Link>
-            </div>
-            <div className="bars" onClick ={() => setOpen(!isOpen)}><FontAwesomeIcon icon={faBars} /></div>
-        </div> 
+             
+            <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href= "/loginForm">Login</a></li>
+            <li><a href = "/registerForm">Sign Up</a></li>
+            <li><a href = "/Cart">Cart</a></li>
+            <li className = "close">X</li>
+         </ul>
+            
+        </header> 
        )
 }
 

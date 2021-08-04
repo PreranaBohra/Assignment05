@@ -1,149 +1,146 @@
-import React from 'react';
+import React, { useEffect,useState,useContext} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import "../css/Cart.css"
+import CartContext from '../contexts/CartContext';
 
-    class CartPage extends React.Component {
-        constructor() {
-          super();
-      
-          const state = {
-              cart:[],
-              cartTotal: 0
-          };
-        }
-      
-        componentDidMount() {
-          const local = localStorage.getItem("cart");
-          console.log("local", local);
-          if (local) {
-            const data = JSON.parse(local);
-            this.setState({
-              cart: data
-            });
-          }
-        }
+import { Link } from "react-router-dom";
+    
+       const Cart = () =>{
        
        
-        increment = (id) => {
-          let quantity = 1;
-      
-          const local = localStorage.getItem("cart");
-          let cartArr = [];
-          if (local) {
-            cartArr = JSON.parse(local);
+       const [total, setTotal] = useState();
+       const { cart, removeItem } = useContext(CartContext);
+      console.log(cart)
+      // console.log(cart)
+// useEffect(() => {
+// setTotal(cart.reduce((acc, curr) => acc + Number(curr.price), 0));
+// }, [cart]);
+
+// const totalPrice = this.state.cart.reduce((acc, curr) => acc + curr.price, 0);
+// const increment = (id) =>{
+// if(props.id == !id)
+// setCart({
+// quantity: props.item.quantity + 1
+// })
+// }
+
+// const decrement = (id) =>{
+// if(id == !id)
+// setCart({
+// quantity: props.item.quantity - 1
+// })
+// }
+// const removeItem = (id) =>{
+// if(id == !id)
+// setCart({ 
+// })
+// }
+// const getTotalSum = () => {
+// return cart.reduce(
+// (sum, { price, quantity }) => sum + price * quantity,
+// 0
+// );
+// }; 
+
+      return (
+      <div className="cart">
+      <div className="cart-left">
+           <div className="cart-title">Cart Page</div>
+          
+            <table className="table1" >
+              <thead>
+               <th>Image</th>
+                <th className="img_title">Title</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </thead>
+              <tbody>
+              {cart.map((item) => (
+                  <tr key={item.id}>
+                    <td><img src ={item.imageUrl} alt={item.title} className ="cart-img"/></td>
+                    <td className="img_title">{item.title}</td>
+                    <td className="price">${item.price}</td>
+                    <td className="count">
+                    <button className = "Add"  >+</button>
+                    <div className="quantity">{item.quantity}</div>
+                    <button className = "substract" disabled = {(item.quantity === 1) ? true : false} >-</button>
+                    <button onClick={()=>removeItem(item._id)}><FontAwesomeIcon icon={faTrash}/></button>
+                    </td>
+                    <td>${ item.total || item.price}</td>
+                  </tr>
+                  ))} 
+              </tbody>
+              </table>
+              
+          </div>
+          <div className="cart-right">
+         
+           <table className="table2">
+           <thead>
+           <th>Cart Items</th>
+           <th>Price</th>
+           </thead>
+           <tbody>
+           {cart.map((item) => (
+           <tr>
+           <td>{item.title}</td>
+           <td>${ item.total || item.price}</td>
+           </tr>
+           ))}
+           </tbody>
+           <hr/>
+           <div className="total-price">Total Price: ${total} </div>
+           <Link to = "checkout">
+           <button className= "checkOut-btn">Check Out</button>
+           </Link>
+           </table> 
+            
+          
+           </div>
            
-          cartArr = cartArr.map((item) => {
-            if (item.id === id) {
-              return {
-                ...item,
-                quantity: item.quantity + 1 ,
-                price : item.price,
-                total: item.price * item.quantity 
-              };
-            } else return item;
-          });
-         
-        }
-         
-
-          localStorage.setItem("cart", JSON.stringify(cartArr));
-          this.setState ({cart :cartArr})
-        };
-       
-        decrement = (id) => {
-          
-          let quantity =1
-      
-          const local = localStorage.getItem("cart");
-          let cartArr = [];
-          
-          if (local) {
-            cartArr = JSON.parse(local);
-      
-          cartArr = cartArr.map((item) => {
-            if (item.id === id) {
-        
-              return {
-                ...item,
-                quantity: item.quantity - 1,
-                price : item.price,
-                total: item.price * item.quantity
-               
-              };
-            } else return item;
-          });
-        }
-          
-          localStorage.setItem("cart", JSON.stringify(cartArr));
-          this.setState ({cart :cartArr})
-        };
-       
-        removeData = (id) =>{
-          
-          const local = localStorage.getItem("cart");
-          let cartArr = [];
-          
-          if (local) {
-            cartArr = JSON.parse(local);
-      
-          cartArr = cartArr.filter((item) => 
-             (item.id !== id) );
-          }
-          localStorage.setItem("cart", JSON.stringify(cartArr));
-          this.setState ({cart :cartArr})
-        }
-        
-        addTotals = () => {
-          let subTotal = 0;
-          this.state.cart.map(item => (subTotal += item.total));
-          const total = subTotal ;
-          this.setState(() => {
-            return {
-              cartTotal:total
+           </div>
+      );
             }
-          })
-        };
+        
+      
+      export default Cart;
       
       
-        render() {
-          
-          return (
-            <div>
-              <h1>Cart Page</h1>
-              {this.state ? (
-                <table>
-                  <thead>
-                   <th>Image</th>
-                    <th>Title</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th></th>
-                    <th></th>
-                    <th>Total</th>
-                  </thead>
-                  <tbody>
-                    {this.state.cart.map((item) => (
-                      <tr key={item.id}>
-                        <td><img src ={item.image} alt={item.title}/></td>
-                        <td>{item.title}</td>
-                        <td>${item.price}</td>
-                        <td>{item.quantity}</td>
-                        <td><button className = "Add" onClick={this.increment.bind(this, item.id)}>+</button> <button className = "substract" onClick={this.decrement.bind(this, item.id )}>-</button></td>
-                        <td><button onClick={this.removeData.bind(this, item.id)}><FontAwesomeIcon icon={faTrash} /></button></td>
-                        <td>{item.total}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              ) : (
-                <p>Cart is empty</p>
-              )}
-              <hr/>
-              <div></div>
-            </div>
-          );
-        }
-      }
-      
-      export default CartPage;
+// import React, { useContext } from 'react';
+
+// // Components
+// import Item from './cartItems';
+
+// // Contexts
+// import CartContext from '../contexts/CartContext';
+
+// const ShoppingCart = () => {
+//   const { cart, removeItem } = useContext(CartContext);
+//   console.log(cart)
+
+//   const getCartTotal = () => {
+//     return cart
+//       .reduce((acc, value) => {
+//         return acc + value.price;
+//       }, 0)
+//       .toFixed(2);
+//   };
+
+//   return (
+//     <div className="shopping-cart">
+//       {cart.map(item => (
+//         <Item key={item.id} {...item} removeItem={removeItem} />
+//       ))}
+
+//       <div className="shopping-cart__checkout">
+//         <p>Total: ${getCartTotal()}</p>
+//         <button>Checkout</button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ShoppingCart;
       
